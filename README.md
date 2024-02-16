@@ -45,3 +45,5 @@ https://medium.com/@aaloktrivedi/integrating-lambda-to-send-and-receive-messages
 ```
 https://medium.com/@aaloktrivedi/integrating-lambda-to-send-and-receive-messages-from-sqs-and-sns-part-1-5b359f0f1678
 ```
+
+https://www.youtube.com/watch?v=fZuxp_pOzgI
