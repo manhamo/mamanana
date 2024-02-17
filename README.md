@@ -92,3 +92,4 @@ def lambda_handler(event, context):
         return "sth went wrong"
 
 ```
+https://medium.com/@aaloktrivedi/integrating-lambda-to-send-and-receive-messages-from-sqs-and-sns-part-2-6595133dd1a3
