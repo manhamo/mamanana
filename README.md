@@ -47,3 +47,49 @@ https://medium.com/@aaloktrivedi/integrating-lambda-to-send-and-receive-messages
 ```
 
 https://www.youtube.com/watch?v=fZuxp_pOzgI
+
+
+
+
+
+```
+import json
+import os #access our environment variables
+import boto3 #access AWS resources and methods
+
+QEUE_RESIZE = os.environ['QEUE_URL']
+QEUE_DL= os.environ['D_QEUE_URL']
+def lambda_handler(event, context):
+    #metod should be post
+    data=json.loads(event['body'])
+    
+    sqs = boto3.resource('sqs')
+    rqeue = sqs.Queue(QEUE_RESIZE)
+    dqeue=sqs.Queue(QEUE_DL)
+    url=data['url']
+    action=data['action']
+    try:
+        if action== "resize":
+            response = rqeue.send_message(MessageBody=url) #send message to queue      
+            response = f"MessageID: '{response['MessageId']}' sent to queue."
+            print(response)
+            return{ 
+                'statusCode': 200,
+                'body': response
+            }
+            
+        elif action == "download":
+            response = dqeue.send_message(MessageBody=url) #send message to queue  
+            response = f"MessageID: '{response['MessageId']}' sent to queue."
+            print(response)
+            return{ 
+                'statusCode': 200,
+                'body': response
+            }
+            
+    except Exception as e:
+        print(e)
+        return "sth went wrong"
+
+```
+````
